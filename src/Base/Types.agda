@@ -28,3 +28,7 @@ module Base.Types where
   data Bool {i} : Set i where
     true  : Bool
     false : Bool
+
+  {-# BUILTIN BOOL  Bool  #-}
+  {-# BUILTIN TRUE  true  #-}
+  {-# BUILTIN FALSE false #-}
