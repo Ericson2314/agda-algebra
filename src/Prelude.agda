@@ -11,7 +11,9 @@ module Prelude where
   {-# BUILTIN LEVELZERO zero  #-}
   {-# BUILTIN LEVELSUC  suc   #-}
 
-  data _≡_ {n} {A : Set n} (x : A) : A → Set n where
+  infix 4 _≡_
+
+  data _≡_ {i} {A : Set i} (x : A) : A → Set i where
     refl : x ≡ x
 
   {-# BUILTIN EQUALITY _≡_  #-}
@@ -20,5 +22,5 @@ module Prelude where
   data ⊥ : Set where
   record ⊤ : Set where
 
-  data _×_ (A B : Set) : Set where
+  data _×_ {i} (A B : Set i) : Set i where
     _,_ : A → B → A × B

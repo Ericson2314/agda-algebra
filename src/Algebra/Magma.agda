@@ -1,4 +1,9 @@
+open import Prelude
+import Algebra.Properties as P
+
 module Algebra.Magma where
 
-  bin-op : Set → Set
-  bin-op t = t → t → t
+  record magma i : Set (suc i) where
+    field
+      carrier : Set i
+      _·_     : P.bin-op carrier

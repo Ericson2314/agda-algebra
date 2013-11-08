@@ -1,8 +1,11 @@
 open import Prelude
-open import Algebra.Magma
+import Algebra.Properties as P
 
 module Algebra.Semigroup where
 
-  associativity : {t : Set} → bin-op t → Set
-  associativity {t} _·_ = (a : t) → (b : t) → (c : t) →
-                          ((a · b) · c) ≡ (a · (b · c))
+  record semigroup i : Set (suc i) where
+    field
+      carrier       : Set i
+      _·_           : P.bin-op carrier
+
+      associativity : P.associativity _·_
