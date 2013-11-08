@@ -3,6 +3,6 @@ open import Prelude
 
 module Algebra.Magma where
 
-  record magma {i} (carrier : Set i) : Set (suc i) where
+  record magma {i} (carrier : Set i) : Set i where
     field
       _·_     : P.bin-op carrier

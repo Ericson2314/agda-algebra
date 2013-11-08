@@ -3,7 +3,7 @@ open import Prelude
 
 module Algebra.AbelianGroup where
 
-  record abelian-group {i} (carrier : Set i) : Set (suc i) where
+  record abelian-group {i} (carrier : Set i) : Set i where
     field
       _·_           : P.bin-op carrier
       e             : carrier

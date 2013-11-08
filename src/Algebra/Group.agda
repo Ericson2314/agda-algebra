@@ -3,7 +3,7 @@ open import Prelude
 
 module Algebra.Group where
 
-  record group {i} (carrier : Set i) : Set (suc i) where
+  record group {i} (carrier : Set i) : Set i where
     field
       _·_           : P.bin-op carrier
       e             : carrier

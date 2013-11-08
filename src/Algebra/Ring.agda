@@ -5,7 +5,7 @@ open import Algebra.AbelianGroup
 
 module Algebra.Ring where
 
-  record ring {i} (carrier : Set i) : Set (suc i) where
+  record ring {i} (carrier : Set i) : Set i where
     field
       addition             : abelian-group carrier
       multiplication       : monoid carrier

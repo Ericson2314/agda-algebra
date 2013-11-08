@@ -4,7 +4,7 @@ open import Algebra.Monoid
 
 module Algebra.Semiring where
 
-  record semiring {i} (carrier : Set i) : Set (suc i) where
+  record semiring {i} (carrier : Set i) : Set i where
     field
       addition             : monoid carrier
       multiplication       : monoid carrier
