@@ -42,3 +42,6 @@ module Base.Types where
   data _+_ {α β} (A : Set α) (B : Set β) : Set (α ⊔ β) where
     projl : A → A + B
     projr : B → A + B
+
+  decidable : ∀ {i} (A : Set i) → Set i
+  decidable A = A + (¬ A)
