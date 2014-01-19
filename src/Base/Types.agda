@@ -16,11 +16,17 @@ module Base.Types where
 
   record unit {i} : Set i where
 
-  ⊤ : {i : Level} → Set i
+  ⊤ : ∀ {i} → Set i
   ⊤ = unit
 
-  data _×_ {i} (A B : Set i) : Set i where
-    _,_ : A → B → A × B
+  record ∑ {α β} {A : Set α} (B : A → Set β) : Set (α ⊔ β) where
+    constructor _,_
+    field
+      projl : A
+      projr : B projl
+
+  _×_ : ∀ {α β} → (A : Set α) → (B : Set β) → Set (α ⊔ β)
+  A × B = ∑ λ (_ : A) → B
 
 
   -- cardinality 2
@@ -28,3 +34,7 @@ module Base.Types where
   data Bool {i} : Set i where
     true  : Bool
     false : Bool
+
+  data _+_ {α β} (A : Set α) (B : Set β) : Set (α ⊔ β) where
+    projl : A → A + B
+    projr : B → A + B
