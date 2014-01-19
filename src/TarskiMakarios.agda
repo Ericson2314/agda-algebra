@@ -20,7 +20,7 @@ module TarskiMakarios
   ( five-segs : ∀ {a b c d a' b' c' d'} → ¬ (a ≡ b) → B a b c → B a' b' c'
                 → ≅ a b a' b' → ≅ b c b' c' → ≅ a d a' d' → ≅ b d b' d' → ≅ d c c' d' )
   ( ≡-from-B : ∀ {a b} → B a b a → a ≡ b )
-  ( pasch : ∀ {a b c p q} → B a p c → B b q c → ∑ λ (x : P) → B p x b → B q x a )
+  ( pasch : ∀ {a b c p q} → B a p c → B b q c → ∑ λ (x : P) → B p x b × B q x a )
 where
 
 l1 : ∀ a b → ≅ a b a b
@@ -42,6 +42,17 @@ l3 a b = ≡-cong (λ y → B a b y) eqv line
         eqv = ≡-refl (≡-from-≅ (∑.projr (∑.projr seg)))
         line : B a b x
         line = (∑.projl (∑.projr seg))
+
+l4 : ∀ {a b c} → B a b c → B c b a
+l4 {a} {b} {c} b0 = ≡-cong (λ y → B c y a) eq1 (∑.projr (∑.projr p1))
+  where b1 : B b c c
+        b1 = l3 _ _
+        p1 : ∑ λ (x : P) → B b x b × B c x a
+        p1 = pasch b0 b1
+        x : P
+        x = ∑.projl p1
+        eq1 : x ≡ b
+        eq1 = ≡-refl (≡-from-B (∑.projl (∑.projr p1)))
 
 module Euclidian
   ( euclidian : ∀ a b c d t → B a d t → B b d c → ¬ (a ≡ d)
