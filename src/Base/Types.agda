@@ -35,6 +35,10 @@ module Base.Types where
     true  : Bool
     false : Bool
 
+  {-# BUILTIN BOOL  Bool  #-}
+  {-# BUILTIN TRUE  true  #-}
+  {-# BUILTIN FALSE false #-}
+
   data _+_ {α β} (A : Set α) (B : Set β) : Set (α ⊔ β) where
     projl : A → A + B
     projr : B → A + B
