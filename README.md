@@ -1,4 +1,4 @@
-Algebra in Agda
+Agda Scratchpad
 ====================================================================================================
 
-My attempt to learn Agda via implementing bits of algebra.
+Messing with Agda.
