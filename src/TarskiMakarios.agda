@@ -23,38 +23,38 @@ module TarskiMakarios
   ( pasch : ∀ {a b c p q} → B a p c → B b q c → ∑ λ (x : P) → B p x b → B q x a )
 where
 
-  l1 : ∀ a b → ≅ a b a b
-  l1 a b = ≅-transitivity con con
-    where seg : ∑ λ (x : P) → B b a x × ( ≅ a x a b )
-          seg = seg-constr _ _ _ _
-          con = ∑.projr (∑.projr seg)
+l1 : ∀ a b → ≅ a b a b
+l1 a b = ≅-transitivity con con
+  where seg : ∑ λ (x : P) → B b a x × ( ≅ a x a b )
+        seg = seg-constr _ _ _ _
+        con = ∑.projr (∑.projr seg)
 
-  l2 : ∀ {a b c d} → ≅ a b c d → ≅ c d a b
-  l2 {a} {b} con = ≅-transitivity con (l1 a b)
+l2 : ∀ {a b c d} → ≅ a b c d → ≅ c d a b
+l2 {a} {b} con = ≅-transitivity con (l1 a b)
 
-  l3 : ∀ a b → B a b b
-  l3 a b = ≡-cong (λ y → B a b y) eqv line
-    where seg : ∑ λ (x : P) → B a b x × ( ≅ b x b b )
-          seg = seg-constr _ _ _ _
-          x : P
-          x = ∑.projl seg
-          eqv : x ≡ b
-          eqv = ≡-refl (≡-from-≅ (∑.projr (∑.projr seg)))
-          line : B a b x
-          line = (∑.projl (∑.projr seg))
+l3 : ∀ a b → B a b b
+l3 a b = ≡-cong (λ y → B a b y) eqv line
+  where seg : ∑ λ (x : P) → B a b x × ( ≅ b x b b )
+        seg = seg-constr _ _ _ _
+        x : P
+        x = ∑.projl seg
+        eqv : x ≡ b
+        eqv = ≡-refl (≡-from-≅ (∑.projr (∑.projr seg)))
+        line : B a b x
+        line = (∑.projl (∑.projr seg))
 
-  module Euclidian
-    ( euclidian : ∀ a b c d t → B a d t → B b d c → ¬ (a ≡ d)
-                  → ∑ λ (x : P) → ∑ λ (y : P) → B a b x + (B a c y + B x t y) )
-    where
+module Euclidian
+  ( euclidian : ∀ a b c d t → B a d t → B b d c → ¬ (a ≡ d)
+                → ∑ λ (x : P) → ∑ λ (y : P) → B a b x + (B a c y + B x t y) )
+  where
 
-  module Continuity
-    ( continuity : (φ ψ : P → Set l) → (∑ λ (b : P) → ∀ x y → φ x → ψ y → B x b y)
-                   → (∑ λ (b : P) → ∀ x y → φ x → ψ y → B x b y) )
-    where
+module Continuity
+  ( continuity : (φ ψ : P → Set l) → (∑ λ (b : P) → ∀ x y → φ x → ψ y → B x b y)
+                 → (∑ λ (b : P) → ∀ x y → φ x → ψ y → B x b y) )
+  where
 
-  module 2D
-    ( lower-2d : ∀ a b c → (¬ (B a b c)) × ((¬ (B b c a)) × (¬ (B c a b))) )
-    ( lower-2d : ∀ a b c p q → ¬ (p ≡ q) → ≅ a p a q → ≅ b p b q → ≅ c p c q
-                 → B a b c + (B b c a + B c a b) )
-    where
+module 2D
+  ( lower-2d : ∀ a b c → (¬ (B a b c)) × ((¬ (B b c a)) × (¬ (B c a b))) )
+  ( lower-2d : ∀ a b c p q → ¬ (p ≡ q) → ≅ a p a q → ≅ b p b q → ≅ c p c q
+               → B a b c + (B b c a + B c a b) )
+  where
